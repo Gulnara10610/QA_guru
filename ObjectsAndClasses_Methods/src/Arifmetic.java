@@ -8,16 +8,17 @@ public class Arifmetic {
         this.b = b;
     }
 
-    public int sum(int a, int b) {
+    public int sum() {
 
         return a + b;
     }
 
-    public int multiplication(int a, int b) {
+    public int multiplication() {
+
         return a * b;
     }
 
-    public int maxNumber(int a, int b) {
+    public int maxNumber() {
         if (a < b) {
             return b;
 
@@ -28,7 +29,7 @@ public class Arifmetic {
 
     }
 
-    public int minNumber(int a, int b) {
+    public int minNumber() {
         if (a > b) {
             return b;
         } else if (a == b) {

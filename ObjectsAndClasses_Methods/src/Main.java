@@ -19,6 +19,10 @@ public class Main {
 
         Arifmetic arifmetic = new Arifmetic(10,2);
 
+        System.out.println(arifmetic.sum());
+        System.out.println(arifmetic.maxNumber());
+        System.out.println(arifmetic.multiplication());
+
 
 
 
