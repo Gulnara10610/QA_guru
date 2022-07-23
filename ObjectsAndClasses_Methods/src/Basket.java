@@ -88,7 +88,7 @@ public class Basket {
         if (items.isEmpty()) {
             System.out.println("Корзина пуста");
         } else {
-            System.out.println(items + "\nОбщий вес = " + totalWeight);
+            System.out.println(items + "\nОбщий вес =  кг" + totalWeight);
 
         }
     }
