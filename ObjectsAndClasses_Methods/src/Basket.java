@@ -66,7 +66,7 @@ public class Basket {
     }
 
     public void  add(String name, int price, int count, double weight){
-        items = items + "\n" + name + "-" + price + count + weight;
+        items = items + "\n" + name + " - " + price + " руб." + "\n" + "Стоимость - " +  count + " руб." + "\n" + "Вес - " + weight + " кг";
         totalPrice = totalPrice + price;
 
         if (weight >0) {
@@ -100,7 +100,7 @@ public class Basket {
         if (items.isEmpty()) {
             System.out.println("Корзина пуста");
         } else {
-            System.out.println(items + "\nОбщий вес = "  + totalWeight);
+            System.out.println(items);
 
         }
     }
