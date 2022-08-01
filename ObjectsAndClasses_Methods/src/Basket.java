@@ -36,8 +36,8 @@ public class Basket {
 
     public void add(String name, int price) {
         add(name, price, 1);
-        items = items + "\n" + name + "-" + price;
-        totalPrice = totalPrice + price;
+        items = items + "\n" + name + " - " + price;
+        totalPrice = totalPrice + price * count;
 
         totalWeight = totalWeight;
 
@@ -50,8 +50,8 @@ public class Basket {
             error = true;
         }
 
-        if (totalPrice + count * price >= limit) {
-            error = true;
+        if (totalPrice + count * price <= limit) {
+            error = false;
         }
 
         if (error) {
@@ -59,20 +59,22 @@ public class Basket {
             return;
         }
 
-        items = items + "\n" + name + " - " +
-                count + " шт. - " + price;
-        totalPrice = totalPrice + count * price;
-        totalWeight = totalWeight;
+        totalPrice = totalPrice + price * count;
+        items = items + "\n" + name + " - " + price + " руб." + "\n" + "Количество - " +  count + " шт. "
+                 + "\n" + "Общая стоимость - " + totalPrice;
     }
 
     public void  add(String name, int price, int count, double weight){
-        items = items + "\n" + name + " - " + price + " руб." + "\n" + "Стоимость - " +  count + " руб." + "\n" + "Вес - " + weight + " кг";
-        totalPrice = totalPrice + price;
-
+        totalPrice = totalPrice + price * count;
         if (weight >0) {
             totalWeight = totalWeight + weight;
         } else
-        totalWeight = totalWeight;
+            totalWeight = totalWeight;
+
+        items = items + "\n" + name + " - " + price + " руб." + "\n" + "Количество - " +  count + " шт. " + "\n" + "Вес - "
+                + weight + " кг" + "\n" + "Общая стоимость - " + totalPrice;
+
+
 
 
     }
