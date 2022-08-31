@@ -1,14 +1,30 @@
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class SeleniumTest {
+    private WebDriver driver;
+
+    @Before
+    public void setUp(){
+        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
+        driver = new ChromeDriver();
+    }
+
+    @After
+    public void tearDown(){
+        driver.quit();
+    }
+
+
+
     @Test
     public void testHelloVasya(){
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+
         driver.navigate().to("https://lm.skillbox.cc/qa_tester/module01/");
         driver.findElement(By.name("name")).sendKeys("Вася");
         driver.findElement(By.className("button")).click();
@@ -16,26 +32,24 @@ public class SeleniumTest {
         var actualResult = driver.findElement(By.className("start-screen__res")).getText();
         var expectedResul = "Привет , Вася !";
         Assert.assertEquals(expectedResul, actualResult);
-        driver.quit();
+
 
     }
     @Test
     public void testClickEnter(){
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+
         driver.navigate().to("https://lm.skillbox.cc/qa_tester/module01/");
         driver.findElement(By.className("button")).click();
         var actualResult = driver.findElement(By.className("start-screen__res")).getText();
         var expectedResul = "Привет, !";
         Assert.assertEquals(expectedResul, actualResult);
-        driver.quit();
+
 
     }
     @Test
 
     public void difficultSite(){
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+
         driver.navigate().to("https://lm.skillbox.cc/qa_tester/module02/homework1/");
         driver.findElement(By.className("button")).click();
         var actualResult = driver.findElement(By.className("start-screen__res")).getText();
@@ -43,12 +57,11 @@ public class SeleniumTest {
                 "На вашу почту () отправлено письмо.\n" +
                 "Наш сотрудник свяжется с вами по телефону: .";
         Assert.assertEquals(expectedResul, actualResult);
-        driver.quit();
+
     }
     @Test
     public void positiveTest(){
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+
         driver.navigate().to("https://lm.skillbox.cc/qa_tester/module02/homework1/");
         driver.findElement(By.name("name")).sendKeys("Настя");
         driver.findElement(By.name("email")).sendKeys("gulnara0706@yandex.ru");
@@ -62,13 +75,12 @@ public class SeleniumTest {
                 "Наш сотрудник свяжется с вами по телефону: +79818229949.";
 
         Assert.assertEquals(expectedResult, actualResult);
-        driver.quit();
+
     }
 
     @Test
     public void negativeTest(){
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+
         driver.navigate().to("https://lm.skillbox.cc/qa_tester/module02/homework1/");
 
         driver.findElement(By.name("name")).sendKeys("2345678");
@@ -82,13 +94,12 @@ public class SeleniumTest {
                 "Наш сотрудник свяжется с вами по телефону: dfghjjkk.";
 
         Assert.assertEquals(expectedResult, actualResult);
-        driver.quit();
+
     }
 
     @Test
     public void hieroglyphsNegative(){
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+
         driver.navigate().to("https://lm.skillbox.cc/qa_tester/module02/homework1/");
 
         driver.findElement(By.name("name")).sendKeys("康熙字典");
@@ -102,13 +113,12 @@ public class SeleniumTest {
                 "Наш сотрудник свяжется с вами по телефону: 康熙字典.";
 
         Assert.assertEquals(expectedResult, actualResult);
-        driver.quit();
+
 
     }
     @Test
     public void negativeEmail(){
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+
         driver.navigate().to("https://lm.skillbox.cc/qa_tester/module02/homework1/");
 
         driver.findElement(By.name("name")).sendKeys("ASDFVCXZ DFFFF");
@@ -123,7 +133,7 @@ public class SeleniumTest {
                 "Наш сотрудник свяжется с вами по телефону: ASD45++++_)(.";
 
         Assert.assertEquals(expectedResult, actualResult);
-        driver.quit();
+
 
     }
 
