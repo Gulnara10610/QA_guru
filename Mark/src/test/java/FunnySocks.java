@@ -52,7 +52,7 @@ public class FunnySocks {
         driver.findElement(inputEmail).sendKeys("@");
         driver.findElement(inputPassword).sendKeys("123");
         driver.findElement(clickButton).click();
-        Assert.assertTrue("Неправильно указан текст", driver.findElement(errorMessage).isDisplayed());
+        Assert.assertTrue("Неправильно указанo текст", driver.findElement(errorMessage).isDisplayed());
         Assert.assertEquals("Некорректный email или пароль", driver.findElement(errorMessage).getText());
 
 
