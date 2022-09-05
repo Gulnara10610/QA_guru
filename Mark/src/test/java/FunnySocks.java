@@ -42,7 +42,7 @@ public class FunnySocks {
     private By inputEmail = By.cssSelector(".form-input.input-data");
     private By inputPassword = By.cssSelector("input#password.form-input.password");
     private By clickButton = By.cssSelector("button#submit.form-submit");
-    private  By errorMessage = By.cssSelector(" pre#error.form-error-password-email");
+    private  By errorMessage = By.cssSelector("pre#error.form-error-password-email");
 
 
 
