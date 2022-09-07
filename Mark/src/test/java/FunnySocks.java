@@ -120,9 +120,9 @@ public class FunnySocks {
     private By pLast = By.cssSelector("form.form[id=login-form] > p:last-child");
     private By child3 = By.cssSelector("body > *:nth-child(3)");
     private By menuList = By.cssSelector("div.footer__menuList > a:nth-of-type(1)");
-    private By fiveTask = By.cssSelector("div.footer__menu > div.footer__menuList > a:nth-of-type(1)"); // находит все элементы ?
+    private By fiveTask = By.cssSelector("div.footer__menu > div.footer__menuList:first-child > a:nth-of-type(1)"); // находит все элементы ?
     @Test
-    public void testbookShop(){
+    public void testBookShop(){
         driver.navigate().to("http://qajava.skillbox.ru/module05/auth/index.html/");
         driver.findElement(h1First);
         driver.findElement(pLast);
