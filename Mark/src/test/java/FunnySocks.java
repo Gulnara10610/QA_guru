@@ -3,31 +3,39 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class FunnySocks {
     private WebDriver driver;
     private WebDriverWait wait;
 
+
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
-        driver =  new ChromeDriver();
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 5);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
     }
 
     @After
-    public void tearDown(){
+    public void tearDown() throws IOException {
+        var sourceFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
         driver.quit();
     }
+
     @Test
-    public void testSocks(){
+    public void testSocks() {
         driver.navigate().to("http://qajava.skillbox.ru/module04/homework/auth/index.html");
         var inputEmail = driver.findElement(By.id("email"));
         inputEmail.sendKeys("@");
@@ -48,22 +56,18 @@ public class FunnySocks {
     private By inputEmail = By.cssSelector("[important ='']");
     private By inputPassword = By.cssSelector("[required='true']");
     private By clickButton = By.cssSelector("button#submit.form-submit");
-    private  By errorMessage = By.cssSelector("pre#error.form-error-password-email");
+    private By errorMessage = By.cssSelector("pre#error.form-error-password-email");
 
     private By headerWords = By.cssSelector("[for = 'main-header-page']");
 
-    private  By hrefMailto = By.cssSelector("a[href^='mailto']");
+    private By hrefMailto = By.cssSelector("a[href^='mailto']");
 
     private By header = By.cssSelector("[class$='header']");
     private By classEntrance = By.cssSelector("h3[class*='title']");
 
 
-
-
-
-
     @Test
-    public void testByLocator(){
+    public void testByLocator() {
         driver.navigate().to("http://qajava.skillbox.ru/module05/auth/index.html/");
         driver.findElement(inputEmail).sendKeys("@");
         driver.findElement(inputPassword).sendKeys("123");
@@ -80,8 +84,9 @@ public class FunnySocks {
     private By book = By.cssSelector("button[class^='book']");
     private By endMain = By.cssSelector("[class$='main']");
     private By classMenu = By.cssSelector("a[class*='menu']");
+
     @Test
-    public void booksShop(){
+    public void booksShop() {
         driver.navigate().to("http://qajava.skillbox.ru/index.html");
         driver.findElement(aboutShop);
         driver.findElement(emptyHref);
@@ -93,17 +98,11 @@ public class FunnySocks {
     }
 
 
-
-
-
-
-
-
     private By footerId = By.cssSelector("footer[id='footer'] > div");
     private By liGenres = By.cssSelector("li[id='genres'] +* ");
 
     @Test
-    public void positiveBookShop(){
+    public void positiveBookShop() {
         driver.navigate().to("http://qajava.skillbox.ru/index.html");
         driver.findElement(footerId);
         driver.findElement(liGenres);
@@ -112,8 +111,9 @@ public class FunnySocks {
 
     private By filterContainer = By.cssSelector("div.filter-container > span ~*");
     private By selected = By.cssSelector("[selected='']");
+
     @Test
-    public void searchBook(){
+    public void searchBook() {
         driver.navigate().to("http://qajava.skillbox.ru/search.html");
         driver.findElement(filterContainer);
         driver.findElement(selected);
@@ -121,14 +121,14 @@ public class FunnySocks {
 
 
 
-
-    private By h1First = By.cssSelector("section[for='main-header-page'] > h1:first-child");
-    private By pLast = By.cssSelector("form.form[id=login-form] > p:last-child");
-    private By child3 = By.cssSelector("body > *:nth-child(3)");
-    private By menuList = By.cssSelector("div.footer__menuList > a:nth-of-type(1)");
-    private By fiveTask = By.cssSelector("div.footer__menu > div.footer__menuList:first-child > a:nth-of-type(1)"); // находит все элементы ?
     @Test
-    public void testBookShop(){
+    public void testBookShop() {
+        var h1First = By.cssSelector("section[for='main-header-page'] > h1:first-child");
+        var pLast = By.cssSelector("form.form[id=login-form] > p:last-child");
+        var child3 = By.cssSelector("body > *:nth-child(3)");
+        var  menuList = By.cssSelector("div.footer__menuList > a:nth-of-type(1)");
+        var  fiveTask = By.cssSelector("div.footer__menu > div.footer__menuList:first-child > a:nth-of-type(1)"); // находит все элементы ?
+
         driver.navigate().to("http://qajava.skillbox.ru/module05/auth/index.html/");
         driver.findElement(h1First);
         driver.findElement(pLast);
@@ -138,10 +138,8 @@ public class FunnySocks {
     }
 
 
-
-
     @Test
-    public void dailyTest(){
+    public void dailyTest() {
         driver.navigate().to("http://qa.skillbox.ru/module15/bignotes/#/");
         var buttonPlus = By.cssSelector("button.pageCreate__sidebarHeaderAdd > svg:nth-of-type(1)");
         driver.findElement(buttonPlus).click();
@@ -157,12 +155,13 @@ public class FunnySocks {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(lightBox));
         var text1 = By.cssSelector("div.articlePreview.pageCreate__articlePreview:nth-child(1) > div.articlePreview__content > *:nth-child(2)");
 
-        Assert.assertEquals("заголовок новой записи",driver.findElement(text1).getText());
+        Assert.assertEquals("заголовок новой записи", driver.findElement(text1).getText());
         var textText = By.cssSelector("div.articlePreview.pageCreate__articlePreview:nth-child(1) > div.articlePreview__content > *:nth-child(3)");
         Assert.assertEquals("текст новой записи", driver.findElement(textText).getText());
 
 
     }
+
     @Test
     public void homeWorkLocator() {
         var locatorHomeWork = By.cssSelector("section.header p");
@@ -174,7 +173,7 @@ public class FunnySocks {
     }
 
     @Test
-    public void testSecond(){
+    public void testSecond() {
         driver.navigate().to("https://lm.skillbox.cc/qa_tester/module04/practice1/");
         var secondTask = By.cssSelector("input[type='text']:not([id])");
         driver.findElement(secondTask);
@@ -185,32 +184,105 @@ public class FunnySocks {
     }
 
     @Test
-    public void tasskFird(){
+    public void taskThird() {
         driver.navigate().to("http://qa.skillbox.ru/module15/bignotes/#/statistic");
         var buttonLink = By.cssSelector("div.articlePreview.pageStatistic__article:nth-of-type(1) > button.articlePreview__link");
         driver.findElement(buttonLink).click();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        var allTexts = By.cssSelector("div.pageArticle__sidebarHeader.pageArticle__sidebarWrapper");
 
-        Assert.assertEquals("Неправильный текст","Все записи",driver.findElement(allTexts).getText());
-        var basketClick = By.cssSelector("button.pageArticle__button:nth-of-type(1) > svg.pageArticle__icon > use");
+        var allTexts = By.cssSelector("div.pageArticle__sidebarHeader.pageArticle__sidebarWrapper");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(allTexts));
+
+        Assert.assertEquals("Неправильный текст", "Все записи", driver.findElement(allTexts).getText());
+        var basketClick = By.cssSelector("button.pageArticle__button:nth-of-type(2) > svg.pageArticle__icon");
         driver.findElement(basketClick).click();
         var firstText = By.cssSelector("div.articlePreview.pageArticle__articlePreview:nth-of-type(1) button.articlePreview__link");
         driver.findElement(firstText).click();
         driver.findElement(basketClick).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(firstText));
-        var invisibleElement = By.cssSelector("(div.vb-content");
-        Assert.assertTrue("Неправильно указан текст", driver.findElement(invisibleElement).isEnabled());
+
 
     }
 
 
+    @Test
+    public void onlineFeature() {
+        driver.navigate().to("http://qa.skillbox.ru/module19/");
+        var arrowsLeft = By.xpath("//span[@class='da-arrows-prev']");
+        driver.findElement(arrowsLeft);
+
+        var learnMore = By.xpath("//a[@class='da-link button']");
+        driver.findElement(learnMore);
+
+        var startsButton = By.xpath("//*[starts-with(@class,'butt')]");
+        driver.findElement(startsButton);
+
+        var writeToUs = By.xpath("(//a[@class='button'])[1]");
+        driver.findElement(writeToUs);
+
+        var photos = By.xpath("//div[@class='bx-viewport']");
+        driver.findElement(photos);
 
 
+        var pro = By.xpath("//div[@class='price-table row-fluid']//div[2]");
+        driver.findElement(pro);
+
+        var premium = By.xpath("//div[@class='price-table row-fluid']//div[2]");
+        driver.findElement(premium);
+
+    }
+    @Test
+    public void courses() {
+
+        driver.navigate().to("http://qa.skillbox.ru/module16/maincatalog/");
+        var theFiveCard = By.xpath("(//div[@class='baseCard__wrapper'])[5]");
+        driver.findElement(theFiveCard);
+
+        var theLastCard = By.xpath("(//div[@class='baseCard__conditions'])[last()]//p[text()='7 месяцев']");
+        driver.findElement(theLastCard);
+
+        var href = By.xpath("//*[@href='#']/parent::div");
+        driver.findElement(href);
+
+        var divNumberFive = By.xpath("(//*[@href='#']/parent::div)[5]");
+        driver.findElement(divNumberFive);
+
+        var allCourses = By.xpath("//*[@class='pageCreate__title']/ancestor::*");
+        driver.findElement(allCourses);
+    }
+    @Test
+    public void bookShopOnline(){
+        driver.navigate().to("http://qajava.skillbox.ru/index.html");
+        var aboutShop = By.xpath("//a[@test-info='about-us']");
+        driver.findElement(aboutShop);
+
+        var bestSellers = By.xpath("(//*[text()='Бестселлеры'])[2]");
+        driver.findElement(bestSellers);
+
+        var searchRaw = By.xpath("//input[@id='search-input']");
+        driver.findElement(searchRaw);
+
+        var total = By.xpath("//div[@class='order-info']/div[1]");
+        driver.findElement(total);
+
+        var yourOrder = By.xpath("//div[@id='order-info']//div[1]");
+        driver.findElement(yourOrder);
+
+        var buttonChange = By.xpath("//button[@class='filter-button']");
+        driver.findElement(buttonChange);
 
 
-
-
-
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
 
