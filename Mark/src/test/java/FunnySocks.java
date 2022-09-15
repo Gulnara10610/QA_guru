@@ -262,16 +262,30 @@ public class FunnySocks {
         var searchRaw = By.xpath("//input[@id='search-input']");
         driver.findElement(searchRaw);
 
+
+
+
+
+
+
+
+    }
+    @Test
+    public void basket(){
+        driver.navigate().to("http://qajava.skillbox.ru/checkout.html");
         var total = By.xpath("//div[@class='order-info']/div[1]");
         driver.findElement(total);
 
         var yourOrder = By.xpath("//div[@id='order-info']//div[1]");
         driver.findElement(yourOrder);
 
+
+    }
+    @Test
+    public void searchPage(){
+        driver.navigate().to("http://qajava.skillbox.ru/search.html");
         var buttonChange = By.xpath("//button[@class='filter-button']");
         driver.findElement(buttonChange);
-
-
     }
 }
 
