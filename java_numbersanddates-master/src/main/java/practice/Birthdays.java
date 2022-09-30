@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Birthdays {
 
-    public static void main(String[] args) {
+    public static void main (String[] args) {
 
         int day = 31;
         int month = 12;
