@@ -34,9 +34,8 @@ public class Birthdays {
 
         String text = System.lineSeparator();
         while (birthday.isBefore(today)){
-
-            i = i +1;
             text = text + i + "-" + formatter.format(birthday) + System.lineSeparator();
+            i = i +1;
             birthday = birthday.plusYears(1);
         }
         if(birthday.isEqual(today)){
