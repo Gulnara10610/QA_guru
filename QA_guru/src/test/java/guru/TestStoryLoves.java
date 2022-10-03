@@ -51,12 +51,7 @@ public class TestStoryLoves {
         $("button.form__button.button.js_login[type='button']").click();
         $("a[href='/logout']").click();
     }
-    static Stream<Arguments> checkFooterLinks() {
-        return Stream.of(
-                Arguments.of(List.of("Términos de uso", "Privacidad", "Información de contacto", "Quiénes somos", "Imprint", "Support service"), Locale.COLOMBIA),
-                Arguments.of(List.of("Condizioni di utilizzo", "Privacy", "Informazioni di contatto", "Chi siamo", "Imprint", "Servizio di assistenza"), Locale.ITALIA)
-        );
-    }
+  
 
    
 
