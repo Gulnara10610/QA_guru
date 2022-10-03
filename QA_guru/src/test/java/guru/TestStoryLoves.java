@@ -52,7 +52,7 @@ public class TestStoryLoves {
         $("button.form__button.button.js_login[type='button']").click();
         $("a[href='/logout']").click();
     }
-    static Stream<Arguments> checkFooterStoryLovesTexts() {
+    static Stream<Arguments> checkFooterStoryLovesText() {
         return Stream.of(
                 Arguments.of(List.of("Propiedad literaria © StoryLoves 2022"), Locale.COLOMBIA),
                 Arguments.of(List.of("Copyright © StoryLoves 2022"), Locale.ITALIA),
@@ -66,7 +66,7 @@ public class TestStoryLoves {
         );
     }
 
-    @MethodSource("checkFooterStoryLovesTexts")
+    @MethodSource("checkFooterStoryLovesText")
     @ParameterizedTest(name = "Проверка отображения текста футера для локали: {1}")
     void checkFooterLinks(List<String> aboutCompanyTexts, Locale locale) {
         open("https://storyloves.net/");
