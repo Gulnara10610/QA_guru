@@ -58,14 +58,7 @@ public class TestStoryLoves {
         );
     }
 
-    @MethodSource("checkFooterLinks")
-    @ParameterizedTest(name = "Проверка отображения названия ссылок футера для локали: {1}")
-    void checkFooterLinks(List<String> hrefTexts, Locale locale) {
-        open("https://storyloves.net/");
-        $("div.ccode").click();
-        $$("span.flag__text").find(text(locale.name())).click();
-        $$("div.footer__list").shouldHave(CollectionCondition.texts(hrefTexts));
-    }
+   
 
 
 }
