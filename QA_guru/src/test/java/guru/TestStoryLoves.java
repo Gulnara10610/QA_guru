@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -51,20 +52,23 @@ public class TestStoryLoves {
         $("button.form__button.button.js_login[type='button']").click();
         $("a[href='/logout']").click();
     }
-    static Stream<Arguments> checkFooterLinks() {
+    static Stream<Arguments> checkFooterStoryLovesTexts() {
         return Stream.of(
-                Arguments.of(List.of("Términos de uso", "Privacidad", "Información de contacto", "Quiénes somos", "Imprint", "Support service"), Locale.COLOMBIA),
-                Arguments.of(List.of("Condizioni di utilizzo", "Privacy", "Informazioni di contatto", "Chi siamo", "Imprint", "Servizio di assistenza"), Locale.ITALIA)
+                Arguments.of(List.of("Propiedad literaria © StoryLoves 2022"), Locale.COLOMBIA),
+                Arguments.of(List.of("Copyright © StoryLoves 2022"), Locale.ITALIA)
+
         );
     }
 
-    @MethodSource("checkFooterLinks")
-    @ParameterizedTest(name = "Проверка отображения названия ссылок футера для локали: {1}")
-    void checkFooterLinks(List<String> hrefTexts, Locale locale) {
+    @MethodSource("checkFooterStoryLovesTexts")
+    @ParameterizedTest(name = "Проверка отображения текста футера для локали: {1}")
+    void checkFooterLinks(List<String> aboutCompanyTexts, Locale locale) {
         open("https://storyloves.net/");
         $("div.ccode").click();
         $$("span.flag__text").find(text(locale.name())).click();
-        $$("div.footer__list").shouldHave(CollectionCondition.texts(hrefTexts));
+        $$(".footer__copyright").shouldHave(CollectionCondition.texts(aboutCompanyTexts));
+        //$$(".footer__info").shouldHave(CollectionCondition.texts(aboutCompanyTexts));
+
     }
 
 
