@@ -55,7 +55,13 @@ public class TestStoryLoves {
     static Stream<Arguments> checkFooterStoryLovesTexts() {
         return Stream.of(
                 Arguments.of(List.of("Propiedad literaria © StoryLoves 2022"), Locale.COLOMBIA),
-                Arguments.of(List.of("Copyright © StoryLoves 2022"), Locale.ITALIA)
+                Arguments.of(List.of("Copyright © StoryLoves 2022"), Locale.ITALIA),
+                Arguments.of(List.of("Propiedad literaria © StoryLoves 2022"), Locale.MEXICO),
+                Arguments.of(List.of("Drepturi de autor © StoryLoves 2022"), Locale.ROMANIA),
+                Arguments.of(List.of("Propiedad literaria © StoryLoves 2022"), Locale.ESPAÑA),
+                Arguments.of(List.of("Prawo autorskie © StoryLoves 2022"), Locale.POLSKA),
+                Arguments.of(List.of("Copyright © StoryLoves 2022"), Locale.CANADA)
+
 
         );
     }
