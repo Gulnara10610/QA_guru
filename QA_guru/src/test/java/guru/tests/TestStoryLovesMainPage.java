@@ -1,16 +1,12 @@
-package guru;
+package guru.tests;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
 import guru.data.Locale;
-import net.bytebuddy.asm.Advice;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -19,15 +15,15 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TestStoryLoves {
+public class TestStoryLovesMainPage {
     public static String softeka = "UAB Softeka 304873072, Saltkalviu g. 64-23, Vilnius, 02175, LITHUANIA,\n" +
             "Landscape Trends LP NL000408 Suite 7030 6 Margaret Street, Newry, County Down, Northern Ireland, BT34 1DF";
 
     @BeforeAll
     static void openPage(){
+        open("https://storyloves.net/");
         Configuration.browserSize = "1920x1080";
         Configuration.holdBrowserOpen = true;
     }
@@ -48,7 +44,6 @@ public class TestStoryLoves {
     @MethodSource("checkFooterStoryLoves")
     @ParameterizedTest(name = "Проверка подвала на количество ссылок {1}")
     void checkFooterStoryLoves(List<String> footerTexts, Locale locale){
-        open("https://storyloves.net/");
         $("div.ccode").click();
         $$("span.flag__text").find(text(locale.name())).click();
         $$("div.footer__list").shouldHave(CollectionCondition.texts(footerTexts));
